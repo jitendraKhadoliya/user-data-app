@@ -1,0 +1,32 @@
+.single-card {
+    width: 400px;
+    height: 350px;
+    border-radius: 25px;
+    column-gap: 12px;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+.single-subCard {
+    margin: 0 35px;
+}
+
+.sub-heading {
+    color: #424242;
+    margin-right: 3px;
+}
+
+.user-name {
+    color: #424242;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.user-data {
+    margin: 5px 0;
+    font-size: 19px;
+}
