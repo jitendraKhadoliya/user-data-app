@@ -2,47 +2,51 @@ import React from "react";
 import "./userItem.css";
 
 const UserItem = ({ user }) => {
-  // here I am defining Website link
-  const website = user.website.startsWith("http")
-    ? user.website
-    : `https://${user.website}`;
+  const { name, email, username, address, phone, website, company } = user;
+  const formattedAddress = `${address.street}, ${address.suite}, ${address.city}, ${address.zipcode}`;
+  const formattedWebsite = website.startsWith("http")
+    ? website
+    : `https://${website}`;
 
   return (
     <div className="single-card">
       <div className="single-subCard">
         <div className="user-name">
-          <h3>{user.name}</h3>
-        </div>
-        <div className="user-data">
-          <span className="sub-heading">Email:</span> {user.email}
+          <h3>{name}</h3>
         </div>
 
         <div className="user-data">
-          <span className="sub-heading">Username:</span> {user.username}
+          <span className="sub-heading">Email:</span> {email}
+        </div>
+
+        <div className="user-data">
+          <span className="sub-heading">Username:</span> {username}
         </div>
         <div className="user-data">
           <span className="sub-heading">Address:</span>
-          {user.address.street}, {user.address.suite}, {user.address.city},{" "}
-          {user.address.zipcode}
+          {formattedAddress}
         </div>
         <div className="user-data">
           <span className="sub-heading">Phone:</span>
-          {user.phone}
+          {phone}
         </div>
 
-        {/* double check on web site */}
         {website && (
           <div className="user-data">
             <span className="sub-heading">Website:</span>
-
-            <a href={website} target="_blank" rel="noreferrer">
-              {user.website}
+            <a
+              href={formattedWebsite}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {website}
             </a>
           </div>
         )}
+
         <div className="user-data">
           <span className="sub-heading">Company:</span>
-          {user.company.name}
+          {company.name}
         </div>
       </div>
     </div>
