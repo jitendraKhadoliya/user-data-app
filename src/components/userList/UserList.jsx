@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import UserItem from "../userItem/UserItem";
 import "./userList.css";
+import useFetchData from "../../utils/useFetchData";
 
 const UserList = () => {
-  const [users, setUsers] = useState([]);
+  // accessing endPoint from .env file
+  const endPoint = process.env.REACT_APP_ENDPOINT;
+  // fetching users data
+  const { data: users, isLoading, error } = useFetchData(endPoint);
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  // * create new component to show loading icon in next update
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      const data = await response.json();
-      setUsers(data);
-      console.log(data);
-    } catch (error) {
-      console.log("Error fetching users:", error);
-    }
-  };
-
+  // * create new component to show error in next update
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
   return (
     <div>
       <h2 className="user-title">Our Users List</h2>
